@@ -15,3 +15,11 @@ services:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
+  whoami:
+  # A container that exposes an API to show its IP address
+    image: traefik/whoami
+    labels:
+      - "traefik.http.routers.api-back-router.rule=Host(`api-dev.151-plus.com`)"
+      - "traefik.http.routers.api-back-router.service=151-plus-api-service"
+      - "traefik.http.services.151-plus-api-service.loadBalancer.servers[0].url=http://127.0.0.1:8080"
+      - "traefik.http.services.151-plus-api-service.loadBalancer.servers[0].url=http://127.0.0.1:8081"
