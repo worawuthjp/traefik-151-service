@@ -15,6 +15,7 @@ services:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
   151-plus-backend-proxy:
+    image: traefik/whoami
     labels:
       - "traefik.http.routers.backend-router.service=backend-proxy"
       - "traefik.http.routers.backend-proxy.rule=Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
