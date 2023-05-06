@@ -21,6 +21,3 @@ services:
       - ./acme.json:/acme.json
     container_name: traefik
     restart: always
-networks:
-  web_zone:
-      external: true
