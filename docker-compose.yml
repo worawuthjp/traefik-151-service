@@ -11,8 +11,8 @@ services:
       - web_zone
     volumes:
       - /run/docker.sock:/run/docker.sock
-      - ./traefik.yaml:/traefik.yaml
-      - ./route.yaml:/route.yaml
+      - ./traefik.yml:/traefik.yml
+      - ./route.yml:/route.yml
       - ./acme.json:/acme.json
     container_name: traefik-dev
     restart: always
