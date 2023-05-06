@@ -1,28 +1,21 @@
 version: '3'
-
 services:
-  reverse-proxy:
-    # The official v2 Traefik docker image
-    image: traefik:v2.10
-    # Enables the web UI and tells Traefik to listen to docker
-    command: 
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:8080"
+
+  traefik:
+    image: traefik:latest
+    command: --docker --docker.domain=151-plus.com
     ports:
-      # The HTTP port
-      - "88:80"
-      # The Web UI (enabled by --api.insecure=true)
-      - "8008:8080"
+      - 80:80
+      - 443:443
+    networks:
+      - web_zone
     volumes:
-      # So that Traefik can listen to the Docker events
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /run/docker.sock:/run/docker.sock
+      - ./traefik.yaml:/traefik.yaml
+      - ./route.yaml:/route.yaml
+      - ./acme.json:/acme.json
+    container_name: traefik-dev
     restart: always
-  whoami:
-  # A container that exposes an API to show its IP address
-    image: traefik/whoami
-    labels:
-      - "traefik.http.routers.whoami.rule=Host(`api-dev.151-plus.com`)"
-      - "traefik.http.routers.whoami.service=151-plus-api-service"
-      - "traefik.http.routers.whoami.entrypoints=web"
-      - "traefik.http.services.151-plus-api-service.loadbalancer.server.port=8080"
+networks:
+  web_zone:
+      external: true

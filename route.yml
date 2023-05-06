@@ -1,11 +1,21 @@
 http:
   routers:
-    api-service:
-      service: 151-plus-api
-      rule: "Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
+    http_router:
+      rule: "Host(`api-dev.151-plus.com`)"
+      service: allbackend
+    https_router:
+      rule: "Host(`api-dev.151-plus.com`)"
+      service: allbackend
+      tls:
+        certResolver: myresolver
+        options: tlsoptions
   services:
-    151-plus-api:
+    allbackend:
       loadBalancer:
         servers:
-          - url: "http://212.80.213.204:8080"
-          - url: "http://212.80.213.204:8081"
+          - url: "http://212.80.213.204/"
+          - url: "http://212.80.213.204/"          
+tls:
+  options:
+    tlsoptions:
+      minVersion: VersionTLS12
