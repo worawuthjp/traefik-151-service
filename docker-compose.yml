@@ -11,8 +11,6 @@ services:
       - "88:80"
       # The Web UI (enabled by --api.insecure=true)
       - "8008:8080"
-    networks:
-      - web_zone
     volumes:
       - /run/docker.sock:/run/docker.sock
       - ./traefik.yaml:/traefik.yaml
