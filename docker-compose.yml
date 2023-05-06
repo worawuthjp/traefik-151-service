@@ -19,4 +19,4 @@ services:
     labels:
       - "traefik.http.routers.backend-router.service=backend-proxy"
       - "traefik.http.routers.backend-proxy.rule=Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
-      - "traefik.http.services.backend-proxy.loadbalancer.servers.url= http://127.0.0.1:8080, http://127.0.0.1:8081"
+      - "traefik.http.services.backend-proxy.loadbalancer.servers= url=http://127.0.0.1:8080, urlhttp://127.0.0.1:8081"
