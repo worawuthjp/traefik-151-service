@@ -1,23 +1,23 @@
 version: '3'
 
 services:
-  reverse-proxy:
-    # The official v2 Traefik docker image
-    image: traefik:v2.10
-    # Enables the web UI and tells Traefik to listen to docker
-    command: --api.insecure=true --providers.docker
+
+  traefik:
+    image: traefik:latest
+    command: --docker --docker.domain=yourdomain.com
     ports:
-      # The HTTP port
-      - "88:80"
-      # The Web UI (enabled by --api.insecure=true)
-      - "8008:8080"
+      - 80:80
+      - 443:443
+    networks:
+      - web_zone
     volumes:
-      # So that Traefik can listen to the Docker events
-      - /var/run/docker.sock:/var/run/docker.sock
-  151-plus-backend-proxy:
-    image: traefik/whoami
-    labels:
-      - "traefik.http.routers.backend-router.service=backend-proxy"
-      - "traefik.http.routers.backend-proxy.rule=Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
-      - "traefik.http.services.backend-proxy.loadbalancer.servers[0].url=http://127.0.0.1:8080"
-      - "traefik.http.services.backend-proxy.loadbalancer.servers[1].url=http://127.0.0.1:8081"
+      - /run/docker.sock:/run/docker.sock
+      - ./traefik.yaml:/traefik.yaml
+      - ./tls.yaml:/tls.yaml
+      - ./acme.json:/acme.json
+    container_name: traefik
+    restart: always
+networks:
+  web_zone:
+      external: true
+Backend server

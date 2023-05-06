@@ -1,0 +1,7 @@
+entryPoints:
+  unsecure:
+    address: :80
+
+providers:
+  files:
+    filename: route.yml
