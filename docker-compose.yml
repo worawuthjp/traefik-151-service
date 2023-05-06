@@ -4,20 +4,23 @@ services:
 
   traefik:
     image: traefik:latest
-    command: --docker --docker.domain=yourdomain.com
+    image: traefik:v2.10
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
     ports:
-      - 80:80
-      - 443:443
+      # The HTTP port
+      - "88:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8008:8080"
     networks:
       - web_zone
     volumes:
       - /run/docker.sock:/run/docker.sock
       - ./traefik.yaml:/traefik.yaml
-      - ./tls.yaml:/tls.yaml
+      - ./route.yaml:/route.yaml
       - ./acme.json:/acme.json
     container_name: traefik
     restart: always
 networks:
   web_zone:
       external: true
-Backend server
