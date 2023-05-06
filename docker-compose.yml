@@ -21,5 +21,5 @@ services:
     labels:
       - "traefik.http.routers.api-back-router.rule=Host(`api-dev.151-plus.com`)"
       - "traefik.http.routers.api-back-router.service=151-plus-api-service"
-      - "traefik.http.services.151-plus-api-service.loadBalancer.servers[0].url=http://127.0.0.1:8080"
-      - "traefik.http.services.151-plus-api-service.loadBalancer.servers[0].url=http://127.0.0.1:8081"
+      - "traefik.http.services.151-plus-api-service.loadBalancer.servers[0].url=http://172.18.0.2:8080"
+      - "traefik.http.services.151-plus-api-service.loadBalancer.servers[0].url=http://172.18.0.2:8081"
