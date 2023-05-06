@@ -19,5 +19,4 @@ services:
       - ./traefik.yaml:/traefik.yaml
       - ./route.yaml:/route.yaml
       - ./acme.json:/acme.json
-    container_name: traefik
     restart: always
