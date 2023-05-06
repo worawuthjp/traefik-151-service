@@ -8,7 +8,6 @@ services:
     command: 
       - "--api.insecure=true"
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
     ports:
       # The HTTP port
@@ -26,5 +25,3 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`api-dev.151-plus.com`)"
       - "traefik.http.routers.whoami.service=151-plus-api-service"
       - "traefik.http.routers.whoami.entrypoints=web"
-      - "traefik.http.services.151-plus-api-service.loadbalancer.servers[0].url=http://212.80.213.204:8080"
-      - "traefik.http.services.151-plus-api-service.loadbalancer.servers[1].url=http://212.80.213.204:8081"
