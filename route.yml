@@ -13,8 +13,8 @@ http:
     allbackend:
       loadBalancer:
         servers:
-          - url: "http://212.80.213.204/"
-          - url: "http://212.80.213.204/"          
+          - url: "http://212.80.213.204:8080/"
+          - url: "http://212.80.213.204:8081/"          
 tls:
   options:
     tlsoptions:
