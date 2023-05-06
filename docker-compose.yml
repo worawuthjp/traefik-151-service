@@ -4,7 +4,7 @@ services:
   reverse-proxy:
     image: traefik:v2.10
     # Enables the web UI and tells Traefik to listen to docker
-    command: --docker --docker.domain=yourdomain.com
+    command: --docker --docker.domain=151-plus.com --api.insecure=true --providers.docker
     ports:
       - 88:80
       - 8008:443
