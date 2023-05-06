@@ -2,10 +2,10 @@ http:
   routers:
     api-service:
       service: 151-plus-api
-      rule: "Host(`api.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
+      rule: "Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
   services:
     151-plus-api:
       loadBalancer:
         servers:
-          - url: "http://127.0.0.1:8080"
-          - url: "http://127.0.0.1:8081"
+          - url: "http://212.80.213.204:8080"
+          - url: "http://212.80.213.204:8081"
