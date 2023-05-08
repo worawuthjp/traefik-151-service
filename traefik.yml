@@ -14,5 +14,5 @@ certificatesResolvers:
         entryPoint: unsecure      
 providers:
   file:
-    directory: routes
+    directory: ./routes
     watch: true
