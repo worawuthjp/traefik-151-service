@@ -9,12 +9,25 @@ http:
       tls:
         certResolver: myresolver
         options: tlsoptions
+    http_router_frontend:
+      rule: "Host(`dev.151-plus.com`)"
+      service: frontend
+    https_router_frontend:
+      rule: "Host(`dev.151-plus.com`)"
+      service: frontend
+      tls:
+        certResolver: myresolver
+        options: tlsoptions
   services:
     allbackend:
       loadBalancer:
         servers:
           - url: "http://212.80.213.204:8080/"
-          - url: "http://212.80.213.204:8081/"          
+          - url: "http://212.80.213.204:8081/"    
+    frontend:
+      loadBalancer:
+        servers:
+          - url: "http://212.80.213.204:3000/"   
 tls:
   options:
     tlsoptions:
