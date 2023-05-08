@@ -14,5 +14,5 @@ certificatesResolvers:
         entryPoint: unsecure      
 providers:
   file:
-    filename: route.yml
+    directory: routes
     watch: true
