@@ -12,7 +12,7 @@ services:
     volumes:
       - /run/docker.sock:/run/docker.sock
       - ./traefik.yml:/traefik.yml
-      - ./routes:/routes
+      - ./route.yml:/route.yml
       - ./acme.json:/acme.json
     container_name: traefik-dev
     restart: always
