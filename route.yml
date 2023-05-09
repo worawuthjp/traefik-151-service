@@ -48,6 +48,7 @@ http:
           - PATCH
         accessControlAllowHeaders: "*"
         accessControlAllowOriginList: "*"
+        accessControlAllowCredentials: true
 tls:
   options:
     tlsoptions:
