@@ -43,8 +43,7 @@ http:
           - DELETE
           - PATCH
         accessControlAllowHeaders: "*"
-        accessControlAllowOriginList:
-          - "*"
+        accessControlAllowOriginList: "*"
 tls:
   options:
     tlsoptions:
