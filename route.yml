@@ -3,18 +3,22 @@ http:
     http_router:
       rule: "Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
       service: allbackend
+      middleware: allCors
     https_router:
       rule: "Host(`api-dev.151-plus.com`) && Headers(`x-api-key`, `BA9C2071A882830F1A4E4CEA852217CF4386E2E710CD86263F2A5FC5E3326A26`)"
       service: allbackend
+      middleware: allCors
       tls:
         certResolver: myresolver
         options: tlsoptions
     http_router_frontend:
       rule: "Host(`dev.151-plus.com`)"
       service: frontend
+      middleware: allCors
     https_router_frontend:
       rule: "Host(`dev.151-plus.com`)"
       service: frontend
+      middleware: allCors
       tls:
         certResolver: myresolver
         options: tlsoptions
@@ -27,7 +31,20 @@ http:
     frontend:
       loadBalancer:
         servers:
-          - url: "http://212.80.213.204:3000/"   
+          - url: "http://212.80.213.204:3000/"  
+  middlewares:
+    allCors:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - OPTIONS
+          - PUT
+          - POST
+          - DELETE
+          - PATCH
+        accessControlAllowHeaders: "*"
+        accessControlAllowOriginList:
+          - "*"
 tls:
   options:
     tlsoptions:
